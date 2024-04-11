@@ -10,4 +10,10 @@ namespace OperatorConstants
     #define RIGHT_PIVOT_CANID   0
     #define AMP_MOTOR_CANID     0
 
+//intake subsystem constants
+    #define INTAKE_LEFT_CANID   0
+    #define INTAKE_RIGHT_CANID  0
+    #define INTAKE_POWER_CANID  0
+    #define INTAKE_PHOTOEYE     0
+
 } 
