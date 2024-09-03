@@ -29,6 +29,7 @@ void Shooter::SetShooterTPS(units::angular_velocity::turns_per_second_t speed)
     ctre::phoenix6::controls::VelocityVoltage request = ctre::phoenix6::controls::VelocityVoltage{0_rpm}.WithSlot(0);
 
     m_lowerShooterMotor.SetControl(request.WithVelocity(speed));
+    m_upperShooterMotor.SetControl(request.WithVelocity(speed));
 }
 
 void Shooter::SetPivotAngle(units::angle::turn_t angle)
