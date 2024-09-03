@@ -3,13 +3,17 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/CmdShooterDefault.h"
+#include "Robot.h"
 
 CmdShooterDefault::CmdShooterDefault() {
   // Use addRequirements() here to declare subsystem dependencies.
 }
 
 // Called when the command is initially scheduled.
-void CmdShooterDefault::Initialize() {}
+void CmdShooterDefault::Initialize() 
+{
+  robotContainer.m_shooter.ShooterInit();
+}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdShooterDefault::Execute() {}

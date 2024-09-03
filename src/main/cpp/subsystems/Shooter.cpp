@@ -2,7 +2,21 @@
 
 Shooter::Shooter() = default;
 
-//*******************GETS********************
+//*******************SETS********************
+
+void Shooter::ShooterInit(void)
+{
+    ctre::phoenix6::configs::Slot0Configs slot0configs{};
+
+    slot0configs.kS = 0.1;
+    slot0configs.kV = 0.12;
+    slot0configs.kP = 0.11;
+    slot0configs.kI = 0;
+    slot0configs.kD = 0;
+
+    m_lowerShooterMotor.GetConfigurator().Apply(slot0configs);
+    m_upperShooterMotor.GetConfigurator().Apply(slot0configs);
+}
 
 void Shooter::SetShooterPower(double power)
 {
@@ -10,9 +24,11 @@ void Shooter::SetShooterPower(double power)
     m_lowerShooterMotor.Set(power);
 }
 
-void Shooter::SetShooterRPM(double speed)
+void Shooter::SetShooterTPS(units::angular_velocity::turns_per_second_t speed)
 {
-    //idk i'll figure out speed control later
+    ctre::phoenix6::controls::VelocityVoltage request = ctre::phoenix6::controls::VelocityVoltage{0_rpm}.WithSlot(0);
+
+    m_lowerShooterMotor.SetControl(request.WithVelocity(speed));
 }
 
 void Shooter::SetPivotAngle(units::angle::turn_t angle)
@@ -37,12 +53,11 @@ void Shooter::SetAmpPower(double power)
     m_ampMotor.Set(power);
 }
 
-//*******************SETS********************
+//*******************GETS********************
 
-double Shooter::GetShooterRPM(void)
+ctre::phoenix6::StatusSignal<units::angular_velocity::turns_per_second_t> Shooter::GetShooterTPS(void)
 {
-    //idk i'll figure out speed control later
-    return 0;
+    return m_lowerShooterMotor.GetVelocity();
 }
 
 ctre::phoenix6::StatusSignal<units::angle::turn_t> Shooter::GetPivotAngle(void)

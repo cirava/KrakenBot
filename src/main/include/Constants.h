@@ -2,7 +2,6 @@
 
 namespace OperatorConstants 
 {
-
 //shooter subsystem constants
     #define SHOOTER_UPPER_CANID  0
     #define SHOOTER_LOWER_CANID  0

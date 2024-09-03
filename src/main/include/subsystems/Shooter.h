@@ -15,9 +15,11 @@ class Shooter : public frc2::SubsystemBase {
  public:
   Shooter();
 
+  void ShooterInit(void);
+
   //sets
   void SetShooterPower(double power);
-  void SetShooterRPM(double speed);
+  void SetShooterTPS(units::angular_velocity::turns_per_second_t speed);
 
   void SetPivotAngle(units::angle::turn_t angle);
   void SetPivotPower(double power);
@@ -26,7 +28,7 @@ class Shooter : public frc2::SubsystemBase {
   void SetAmpPower(double power);
 
   //gets
-  double GetShooterRPM(void);
+  ctre::phoenix6::StatusSignal<units::angular_velocity::turns_per_second_t> GetShooterTPS(void);
 
   ctre::phoenix6::StatusSignal<units::angle::turn_t> GetPivotAngle(void);
 
